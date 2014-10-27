@@ -38,11 +38,6 @@ function openExploit() {
 }
 
 function executeTerminalCommand(cmd) {
-    var term = document.getElementById("userterminal");
-    term.scrollTop = term.scrollHeight;
-    if (disableCommands)
-        return;
-
     var bValid = 0;
     for (var i = 0; i < cmd.length; i++) {
         if (cmd[i] != ' ') {
@@ -53,15 +48,12 @@ function executeTerminalCommand(cmd) {
     if (bValid == 0)
         return;
 
-    var cmdEx = cmd;
-    if (cmd == "runexploit") {
-        cmdEx += " " + exploitCode.getValue();
-    }
+    var term = document.getElementById("userterminal");
     term.scrollTop = term.scrollHeight;
     term.innerHTML += "<div class=\"clientMsg\">> " + cmd + "</div>";
     disableCommands = true;
     $.get('execCmd/',
-        {cmd: cmdEx},
+        {cmd: cmd},
         function (data) {
             var term = document.getElementById("userterminal");
             term.innerHTML += "<div class=\"serverMsg\">" + data + "</div>";
