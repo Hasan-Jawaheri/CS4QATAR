@@ -11,6 +11,7 @@ def runexploit(args):
     code += i + " "
   if "import" in code:
     return "Illegal code: Don't import modules!"
+  
   return "Code has been injected."
 
 # this function calls other API functions
@@ -28,7 +29,8 @@ def call (cmd):
   cmdTable = {
     "login": login,
     "runexploit": runexploit,
-    "0NAFOL>-": hashBreak
+    "hash": hashBreak,
+    "logout": logout,
   }
 
   if tokens[0] in cmdTable.keys():
