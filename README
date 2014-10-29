@@ -32,13 +32,13 @@ TO MODIFY THE APP:
 	<Server Mechanics>
 
 		Python Files:
-			API.py: This is the file that links what users input in their
-							terminal to the code that should be executed to perform
-							the actions.
-			phase<num>.py: Each file should contain the set of functions
-										 that make up the stage
-			models.py: This file contains the database model. Do not modify
-								 unless you know what you're doing.
+			API.py: This is the file that links what users input in
+							their terminal to the code that should be executed
+							to perform the actions.
+			phase<num>.py: Each file should contain the set of
+										 functions that make up the stage
+			models.py: This file contains the database model. Do not
+								 modify unless you know what you're doing.
 
 	<Modifying the mechanics>
 
@@ -49,7 +49,7 @@ TO MODIFY THE APP:
 		ADD EXECUTABLE COMMANDS TO PHASE:
 			> Create a function in phase<num>.py that implements what
 				happens when the user executes a command
-			> In API.py, in the function "call", add the following to cmdTable:
+			> In API.py, the function "call", add the following to cmdTable:
 				"<commandName>": <functionName>,
 				Where commandName is the command that the user inputs, and
 				functionName is the name of the function you created in the
@@ -87,8 +87,8 @@ TO MODIFY THE APP:
 			we will store information for all phases. So an account will contain
 			all the information about the team's progress during the event.
 				To use the database, open file models.py and add the variables in
-			there. Every time you change models.py you have to write the following
-			in the terminal where you ran the server:
+			there. Every time you change models.py you have to write the
+			following in the terminal where you ran the server:
 				> python manage.py makemigrations
 				> python manage.py migrate
 
