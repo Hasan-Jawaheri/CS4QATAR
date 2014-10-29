@@ -4,19 +4,93 @@ CS4QATAR
 REQUIREMENTS:
 	python 3.4
 	pip
+	git
 
-INSTALL:
-	> pip install django
-	> pip install pillow
+TO INSTALL:
 
-RUN SERVER/APP:
-	open terminal in this directory
+	> Install git
+		> Built-in for mac/Linux (or find the apt-get command...)
+		> Download package and follow instructions on windows
+	> command line: pip install django
+	> command line: pip install pillow
+
+
+TO RUN/TEST THE APP:
+
+	open terminal in this directory and run:
 	> python manage.py runserver
-	Go to http://localhost:8000/hack/ in a browser
+	Then go to http://localhost:8000/hack/ in a browser
 
-MODIFY APP:
-	CSS FILE:  hack/static/hack/css/main.css
-	JS FILE:   hack/static/hack/js/script.js
-	HTML FILE: hack/templates/hack/index.html
-	PYTHON SERVER:
-		CODE EXECUTION: hack/API.py
+
+TO MODIFY THE APP:
+
+	<User Interface>
+		CSS FILE:  hack/static/hack/css/main.css
+		JS FILE:   hack/static/hack/js/script.js
+		HTML FILE: hack/templates/hack/index.html
+
+	<Server Mechanics>
+
+		Python Files:
+			API.py: This is the file that links what users input in their
+							terminal to the code that should be executed to perform
+							the actions.
+			phase<num>.py: Each file should contain the set of functions
+										 that make up the stage
+			models.py: This file contains the database model. Do not modify
+								 unless you know what you're doing.
+
+	<Modifying the mechanics>
+
+		CREATE A NEW PHASE:
+			> Create a file "phase<num>.py" where num is the phase number.
+			> In API.py, add the line: "import hack.phase<num>.py"
+
+		ADD EXECUTABLE COMMANDS TO PHASE:
+			> Create a function in phase<num>.py that implements what
+				happens when the user executes a command
+			> In API.py, in the function "call", add the following to cmdTable:
+				"<commandName>": <functionName>,
+				Where commandName is the command that the user inputs, and
+				functionName is the name of the function you created in the
+				phase file
+
+		WRITING A COMMAND FUNCTION:
+			> The command function must be a function of the form:
+				def <functionName> (args):
+					...
+				args is a LIST of ARGUMENTS passed by the user. For example,
+				if the user inputs
+				"login SHARJEEL 12345"
+				your function <functionName> will be called with
+				args = ['SHARJEEL', '12345']
+				because "login" is the commandName and the rest is arguments.
+			> The return value from functionName must be a string. This
+				string is what will be printed to the user as an output for
+				his command. For example, the login command being executed
+				from the user's terminal might look like this:
+				> login SHARJEEL 12345
+				> Welcome SHARJEEL!
+				Where "Welcome SHARJEEL!" is the output that must have been
+				returned by functionName.
+
+		WRITING AN EFFECTIVE COMMAND:
+				Most commands will require saving some state about the user. For
+			example, a login command might want to save something so that if
+			the user calls it again after successfully logging in, it can
+			say that he is already logged in without performing the loggin-in
+			action.
+				To save the state we !!!!DO NOT USE GLOBAL VARIABLES, NEVER!!!
+			We use a database to store and load states. Ideally, every team in
+			CS4Qatar will have an account on our system (not to be confused with
+			phases that require login to "fake" accounts...). On every account,
+			we will store information for all phases. So an account will contain
+			all the information about the team's progress during the event.
+				To use the database, open file models.py and add the variables in
+			there. Every time you change models.py you have to write the following
+			in the terminal where you ran the server:
+				> python manage.py makemigrations
+				> python manage.py migrate
+
+			THIS PART IS NOT FINISHED YET
+

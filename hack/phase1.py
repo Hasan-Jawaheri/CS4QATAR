@@ -11,7 +11,7 @@ def login(args):
       return "Already logged in "+ args[0]+". Come on!"
     U.CH1_stage = 1
     a = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
-    U.Hash_value = a
+    U.CH1_Hash_value = a
     U.save()
     return a # strong encryption SharEnc3.0
   return "Invalid login"
@@ -25,9 +25,9 @@ def hashBreak(args):
     string = ""
     for i in range(len(hv)):
       string += chr(ord(hv[i])+5)
-    if(string == U.Hash_value):
+    if(string == U.CH1_Hash_value):
       U.CH1_stage = 2
-      U.Hash_value = 1
+      U.CH1_Hash_value = 1
       U.save()
       return "Login succeeded. Welcome "+args[0]+"!"
     else:
