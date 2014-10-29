@@ -27,7 +27,6 @@ def call (cmd):
   tokens = cmd.split (' ')
   if (len(tokens) < 1):
     return "Invalid command"
-
   # this table maps a string from input (such as "login x y z")
   # and calls a corresponding function in our API. The table
   # is basically a mapping between the input string and the
@@ -37,9 +36,9 @@ def call (cmd):
     "runexploit": runexploit,
 
     # phase 1
-    "login": phase1.login,
-    "hash": phase1.hashBreak,
-    "logout": phase1.logout,
+    "login": hack.phase1.login,
+    "hash": hack.phase1.hashBreak,
+    "logout": hack.phase1.logout,
 
     #phase 2 ...
   }

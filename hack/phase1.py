@@ -5,10 +5,14 @@ import string
 def login(args):
   if len(args) != 1:
     return "Invalid arguments"
+    print "works"
   if User.objects.filter(user=args[0]).exists():
+    print "works"
     U = User.objects.get(user=args[0])
+    print "works"
     if U.CH1_stage > 1:
       return "Already logged in "+ args[0]+". Come on!"
+    print "works"
     U.CH1_stage = 1
     a = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
     U.CH1_Hash_value = a
