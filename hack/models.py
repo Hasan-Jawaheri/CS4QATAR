@@ -21,5 +21,8 @@ class Port(models.Model):
 
   lastUser = models.IntegerField()
 
+  opened = models.BooleanField(default=False)
+
   history = models.CharField(max_length=20)
+
   
